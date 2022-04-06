@@ -61,5 +61,22 @@ namespace Courier_Kata.Model
 
         //Calculate Speedy shipping fee
         private static int GetSpeedyFee(bool IsSpeedy, List<Parcel> parcels) => (IsSpeedy ? parcels.Sum(x => x.ParcelTotalCostWithPenaltyFee) * 2 : 0);
+
+        private static int GetTotalFreeParcel(string OrderDiscountName, int totalParcel, bool checkOrderTirgger)
+        {
+            int FreeParcel = 0;
+            if (!checkOrderTirgger)
+                return FreeParcel;
+
+            FreeParcel = OrderDiscountName switch
+            {
+                nameof(ParcelDiscountType.Small) => Math.DivRem(totalParcel, (int)ParcelDiscountType.Small, out _),
+                nameof(ParcelDiscountType.Medium) => Math.DivRem(totalParcel, (int)ParcelDiscountType.Medium, out _),
+                nameof(ParcelDiscountType.Mixed) => Math.DivRem(totalParcel, (int)ParcelDiscountType.Mixed, out _),
+                _ => 0,
+            };
+
+            return FreeParcel;
+        }
     }
 }
