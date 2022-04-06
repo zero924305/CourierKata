@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Courier_Kata.Model;
 
 namespace Courier_Kata.Controllers
 {
@@ -13,10 +12,11 @@ namespace Courier_Kata.Controllers
     public class ParcelController : ControllerBase
     {
         // GET: api/<ParcelController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("{length_mm},{width_mm},{height_mm},{weight_perG},{IsHeavy}")]
+        public Parcel Get(int length_mm, int width_mm, int height_mm, int weight_perG, bool IsHeavy)
         {
-            return new string[] { "value1", "value2" };
+            Parcel data = new(length_mm, width_mm, height_mm, weight_perG, IsHeavy);
+            return data;
         }
 
 
