@@ -43,6 +43,9 @@ namespace Courier_Kata.Model
         //calculate how much over weight
         public int ParcelOverWeight => this.Weight_g - this.ParcelInfo.ParcelWeightLimit_g;
 
+        //Get how much is the penalty fee if the parcel is over weight
+        public int ParcelPenaltyFee => ParclePenaltyCost(ParcelOverWeight, ParcelInfo, ParcelOverWeightLimite);
+
         //Get ParcelSize Info 
         public ParcelInfo ParcelInfo => GetParcelSize();
          
@@ -78,6 +81,16 @@ namespace Courier_Kata.Model
                         parcelInfo = plist.First(x => x.ParcelSizeName == "XL");
             }
                 return parcelInfo;
+        }
+
+        //Create this method to calculate the penaltycost
+        private static int ParclePenaltyCost(int Overweight, ParcelInfo parcelInfo, bool IsParcelOverWeight)
+        {
+            int OvweWeightInKg = 0;
+            if (IsParcelOverWeight)
+                OvweWeightInKg = (int)Math.Ceiling((double)Overweight / 1000);
+
+            return OvweWeightInKg * parcelInfo.ParcelSizeOverWeightPenaltyFeePerKg;
         }
     }
 }
