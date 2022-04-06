@@ -1,7 +1,7 @@
 ﻿namespace Courier_Kata.Model
 {
     //ParcelInfo store ParcelSize Details
-    public class ParcelInfo
+    public class ParcelInfo : IParcelInfo
     {
         public string ParcelSizeName { get; set; }
         public int ParcelSizedimensions_mm { get; set; }
