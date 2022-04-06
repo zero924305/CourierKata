@@ -28,10 +28,7 @@ namespace Courier_Kata.Controllers
             string json = element.ToString();
             List<Parcel> parcels = JsonSerializer.Deserialize<List<Parcel>>(json);
 
-            Order orderDate = new() 
-            { 
-                OrderParcelDetails = parcels, IsSpeedyOrder = IsSpeedy 
-            };
+            Order orderDate = new(parcels, IsSpeedy);
 
             return new JsonResult(orderDate);
 
