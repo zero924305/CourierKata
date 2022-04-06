@@ -15,15 +15,15 @@ namespace Courier_Kata.Model
         Mixed = 5
     }
 
-    public class Order
+    public class Order: IOrder
     {
         public List<Parcel> OrderParcelDetails { get; set; }
 
-        //using Linq to get the total number of parcel in a order
-        public int TotalParcelInOrder => OrderParcelDetails.Count;
-
         //Check does this order need for fast shipping 
         public bool IsSpeedyOrder { get; set; }
+
+        //using Linq to get the total number of parcel in a order
+        public int TotalParcelInOrder => OrderParcelDetails.Count;
 
         //check the order trigger order discount
         public bool OrderDiscountTrigger => CheckOrderDiscount(OrderDiscountType);
@@ -32,12 +32,12 @@ namespace Courier_Kata.Model
         public string OrderDiscountType => GetParcelDiscountType(OrderParcelDetails, TotalParcelInOrder);
 
         //Get the stander order shipping fee
-        public int StanderOrderShippingFee => GetStanderShippingFee(OrderParcelDetails);
+        public int StanderOrderShippingFee => GetStanderShippingFee(OrderParcelDetails) - ParcelDiscountFee;
 
         //Get the speedy order shipping fee
-        public int SpeedyOrderShippingFee => GetSpeedyFee(IsSpeedyOrder,OrderParcelDetails);
+        public int SpeedyOrderShippingFee => (IsSpeedyOrder?GetSpeedyFee(IsSpeedyOrder,OrderParcelDetails) - ParcelDiscountFee:0);
 
-        public int TotalFreeParcelInOrder => GetTotalFreeParcel(OrderDiscountType,TotalFreeParcelInOrder, OrderDiscountTrigger);
+        public int TotalFreeParcelInOrder => GetTotalFreeParcel(OrderDiscountType, TotalParcelInOrder, OrderDiscountTrigger);
 
         //calculate the lowest price as discount for this order if the order discount is trigger
         public int ParcelDiscountFee => GetParcelDiscount(OrderParcelDetails, TotalFreeParcelInOrder);

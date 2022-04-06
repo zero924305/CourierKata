@@ -8,15 +8,15 @@ namespace Courier_Kata.Model
 {
     public class Parcel
     {
-        public Parcel(int len, int wid, int hei,int wei, bool IsHeavy)
+        public Parcel(int Length_mm, int Width_mm, int Height_mm, int Weight_g, bool IsHeavy)
         {
-            if (len <= 0 || wid <= 0 || hei <= 0 || wei <= 0)
+            if (Length_mm <= 0 || Width_mm <= 0 || Height_mm <= 0 || Weight_g <= 0)
                 throw new InvalidOperationException("The package dimensions or weight are invalid");
 
-            this.Length_mm = len;
-            this.Width_mm = wid;
-            this.Height_mm = hei;
-            this.Weight_g = wei;
+            this.Length_mm = Length_mm;
+            this.Width_mm = Width_mm;
+            this.Height_mm = Height_mm;
+            this.Weight_g = Weight_g;
             this.IsHeavy = IsHeavy;
         }
 
