@@ -37,6 +37,11 @@ namespace Courier_Kata.Model
         //Get the speedy order shipping fee
         public int SpeedyOrderShippingFee => GetSpeedyFee(IsSpeedyOrder,OrderParcelDetails);
 
+        public int TotalFreeParcelInOrder => GetTotalFreeParcel(OrderDiscountType,TotalFreeParcelInOrder, OrderDiscountTrigger);
+
+        //calculate the lowest price as discount for this order if the order discount is trigger
+        public int ParcelDiscountFee => GetParcelDiscount(OrderParcelDetails, TotalFreeParcelInOrder);
+
         //Create a method to get the Parcel Discount Type
         private static string GetParcelDiscountType(List<Parcel> parcels, int totalParcel)
         {
@@ -78,5 +83,7 @@ namespace Courier_Kata.Model
 
             return FreeParcel;
         }
+
+        private static int GetParcelDiscount(List<Parcel> parcels, int TotalFreeParcel) => parcels.OrderBy(x => x.ParcelTotalCostWithPenaltyFee).Take(TotalFreeParcel).Sum(x => x.ParcelTotalCostWithPenaltyFee);
     }
 }
