@@ -25,8 +25,12 @@ namespace Courier_Kata.Model
         //Check does this order need for fast shipping 
         public bool IsSpeedyOrder { get; set; }
 
+        //check the order trigger order discount
+        public bool OrderDiscountTrigger => CheckOrderDiscount(OrderDiscountType);
+
         //get discount type name
         public string OrderDiscountType => GetParcelDiscountType(OrderParcelDetails, TotalParcelInOrder);
+
 
         //Create a method to get the Parcel Discount Type
         private static string GetParcelDiscountType(List<Parcel> parcels, int totalParcel)
@@ -44,5 +48,9 @@ namespace Courier_Kata.Model
             return nameof(ParcelDiscountType.None);
 
         }
+
+        private static bool CheckOrderDiscount(string OrderDiscountType) => !OrderDiscountType.Equals(nameof(ParcelDiscountType.None));
+
+
     }
 }
