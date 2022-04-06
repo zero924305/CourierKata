@@ -54,5 +54,18 @@ namespace Courier_Kata_Test
             Parcel p = new(len, wid, hei, wei, IsHeavy);
             Assert.Equal(IsOverWeight, p.ParcelOverWeightLimite);
         }
+
+        [Theory]
+        [InlineData(50, 50, 50, 2000, false, 1000)] //Small
+        [InlineData(50, 490, 50, 8000, false, 5000)]//Medium
+        [InlineData(50, 990, 50, 12000, false, 6000)]//Large
+        [InlineData(50, 50, 5000, 23000, false, 13000)]//XL
+        [InlineData(50, 50, 50, 55000, true, 5000)]//Heavy
+        public void CheckPackageOverWeightTure(int len, int wid, int hei, int wei, bool IsHeavy, int OverWeightPerG)
+        {
+            Parcel p = new(len, wid, hei, wei, IsHeavy);
+            Assert.Equal(OverWeightPerG, p.ParcelOverWeight);
+        }
+
     }
 }

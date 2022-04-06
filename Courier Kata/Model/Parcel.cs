@@ -40,9 +40,11 @@ namespace Courier_Kata.Model
         //Check does the parcel overweight
         public bool ParcelOverWeightLimite => this.Weight_g > this.ParcelInfo.ParcelWeightLimit_g;
 
+        //calculate how much over weight
+        public int ParcelOverWeight => this.Weight_g - this.ParcelInfo.ParcelWeightLimit_g;
+
         //Get ParcelSize Info 
         public ParcelInfo ParcelInfo => GetParcelSize();
-
          
         public ParcelInfo GetParcelSize()
         {
