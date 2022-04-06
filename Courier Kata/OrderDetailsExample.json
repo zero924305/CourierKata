@@ -1,0 +1,37 @@
+[
+  {
+    "Length_mm": 5,
+    "Width_mm": 5,
+    "Height_mm": 5,
+    "Weight_g": 55,
+    "IsHeavy": false
+  },
+  {
+    "Length_mm": 15,
+    "Width_mm": 15,
+    "Height_mm": 15,
+    "Weight_g": 1355,
+    "IsHeavy": false
+  },
+  {
+    "Length_mm": 25,
+    "Width_mm": 25,
+    "Height_mm": 25,
+    "Weight_g": 3355,
+    "IsHeavy": false
+  },
+  {
+    "Length_mm": 45,
+    "Width_mm": 45,
+    "Height_mm": 45,
+    "Weight_g": 5555,
+    "IsHeavy": false
+  },
+  {
+    "Length_mm": 15,
+    "Width_mm": 5,
+    "Height_mm": 55,
+    "Weight_g": 22355,
+    "IsHeavy": true
+  }
+]
