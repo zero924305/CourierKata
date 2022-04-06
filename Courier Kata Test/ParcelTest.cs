@@ -114,5 +114,17 @@ namespace Courier_Kata_Test
             Parcel p = new(len, wid, hei, wei, IsHeavy);
             Assert.Equal(SizeWeightLimit, p.ParcelInfo.ParcelWeightLimit_g);
         }
+
+        [Theory]
+        [InlineData(50, 50, 50, 500, false, 2)] //Small
+        [InlineData(50, 490, 50, 500, false, 2)]//Medium
+        [InlineData(50, 990, 50, 5000, false, 2)]//Large
+        [InlineData(50, 50, 5000, 9900, false, 2)]//XL
+        [InlineData(50, 50, 50, 500, true, 1)]//Heavy
+        public void CheckParcelPenatlyFee(int len, int wid, int hei, int wei, bool IsHeavy, int ExpectedPrice)
+        {
+            Parcel p = new(len, wid, hei, wei, IsHeavy);
+            Assert.Equal(ExpectedPrice, p.ParcelInfo.ParcelSizeOverWeightPenaltyFeePerKg);
+        }
     }
 }
