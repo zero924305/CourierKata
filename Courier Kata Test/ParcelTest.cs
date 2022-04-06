@@ -61,7 +61,7 @@ namespace Courier_Kata_Test
         [InlineData(50, 990, 50, 12000, false, 6000)]//Large
         [InlineData(50, 50, 5000, 23000, false, 13000)]//XL
         [InlineData(50, 50, 50, 55000, true, 5000)]//Heavy
-        public void CheckPackageOverWeightTure(int len, int wid, int hei, int wei, bool IsHeavy, int OverWeightPerG)
+        public void CheckParcelOverWeightTure(int len, int wid, int hei, int wei, bool IsHeavy, int OverWeightPerG)
         {
             Parcel p = new(len, wid, hei, wei, IsHeavy);
             Assert.Equal(OverWeightPerG, p.ParcelOverWeight);
@@ -73,7 +73,7 @@ namespace Courier_Kata_Test
         [InlineData(50, 990, 50, 12000, false, 12)]//Large
         [InlineData(50, 50, 5000, 23000, false, 26)]//XL
         [InlineData(50, 50, 50, 55000, true, 5)]//Heavy
-        public void CheckPackagePenaltyFee(int len, int wid, int hei, int wei, bool IsHeavy, int PenaltyFee)
+        public void CheckParcelPenaltyFee(int len, int wid, int hei, int wei, bool IsHeavy, int PenaltyFee)
         {
             Parcel p = new(len, wid, hei, wei, IsHeavy);
             Assert.Equal(PenaltyFee, p.ParcelPenaltyFee);
@@ -85,10 +85,22 @@ namespace Courier_Kata_Test
         [InlineData(50, 990, 50, 12000, false, 27)]//Large
         [InlineData(50, 50, 5000, 23000, false, 51)]//XL
         [InlineData(50, 50, 50, 55000, true, 55)]//Heavy
-        public void CheckPackagePrice(int len, int wid, int hei, int wei, bool IsHeavy, int PenaltyPlusPackageFee)
+        public void CheckParcelPrice(int len, int wid, int hei, int wei, bool IsHeavy, int PenaltyPlusPackageFee)
         {
             Parcel p = new(len, wid, hei, wei, IsHeavy);
             Assert.Equal(PenaltyPlusPackageFee, p.ParcelTotalCostWithPenaltyFee);
+        }
+
+        [Theory]
+        [InlineData(50, 50, 50, 500, false, 100)]
+        [InlineData(50, 400, 50, 500, false, 500)]
+        [InlineData(50, 990, 50, 500, false, 1000)]
+        [InlineData(50, 50, 5000, 500, false, 0)]
+        [InlineData(50, 50, 5000, 500, true, 0)]
+        public void ParcelInfoSizeDimensionsTest(int len, int wid, int hei, int wei, bool IsHeavy, int SizeDimensions)
+        {
+            Parcel p = new(len, wid, hei, wei, IsHeavy);
+            Assert.Equal(SizeDimensions, p.ParcelInfo.ParcelSizedimensions_mm);
         }
     }
 }

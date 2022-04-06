@@ -46,6 +46,8 @@ namespace Courier_Kata.Model
         //Get how much is the penalty fee if the parcel is over weight
         public int ParcelPenaltyFee => ParclePenaltyCost(ParcelOverWeight, ParcelInfo, ParcelOverWeightLimite);
 
+        //Get the total cost for the parcel withe penalty 
+        public int ParcelTotalCostWithPenaltyFee => ParcelBaseFee + ParcelPenaltyFee;
         //Get ParcelSize Info 
         public ParcelInfo ParcelInfo => GetParcelSize();
          

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Courier_Kata.Model
+﻿namespace Courier_Kata.Model
 {
     //ParcelInfo store ParcelSize Details
     public class ParcelInfo
