@@ -102,5 +102,17 @@ namespace Courier_Kata_Test
             Parcel p = new(len, wid, hei, wei, IsHeavy);
             Assert.Equal(SizeDimensions, p.ParcelInfo.ParcelSizedimensions_mm);
         }
+
+        [Theory]
+        [InlineData(50, 50, 50, 500, false, 1000)]
+        [InlineData(50, 400, 50, 500, false, 3000)]
+        [InlineData(50, 990, 50, 500, false, 6000)]
+        [InlineData(50, 50, 5000, 500, false, 10000)]
+        [InlineData(50, 50, 5000, 500, true, 50000)]
+        public void ParcelInfoSizeWeightLimitTest(int len, int wid, int hei, int wei, bool IsHeavy, int SizeWeightLimit)
+        {
+            Parcel p = new(len, wid, hei, wei, IsHeavy);
+            Assert.Equal(SizeWeightLimit, p.ParcelInfo.ParcelWeightLimit_g);
+        }
     }
 }
