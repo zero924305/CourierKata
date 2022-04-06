@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier Kata", "Courier Kata\Courier Kata.csproj", "{CD0C5D35-A6C3-483C-95E9-A9791B088850}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier Kata Test", "Courier Kata Test\Courier Kata Test.csproj", "{AB4F2327-9B04-498E-9CF3-4168E85D4B8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CD0C5D35-A6C3-483C-95E9-A9791B088850}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD0C5D35-A6C3-483C-95E9-A9791B088850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD0C5D35-A6C3-483C-95E9-A9791B088850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB4F2327-9B04-498E-9CF3-4168E85D4B8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB4F2327-9B04-498E-9CF3-4168E85D4B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB4F2327-9B04-498E-9CF3-4168E85D4B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB4F2327-9B04-498E-9CF3-4168E85D4B8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
