@@ -34,10 +34,16 @@ namespace Courier_Kata.Model
 
         public bool IsHeavy { get; set; }
 
+        //get the Parcel base Fee by Parcel size  
         public int ParcelBaseFee => ParcelInfo.ParcelSizeFee;
 
+        //Check does the parcel overweight
+        public bool ParcelOverWeightLimite => this.Weight_g > this.ParcelInfo.ParcelWeightLimit_g;
+
+        //Get ParcelSize Info 
         public ParcelInfo ParcelInfo => GetParcelSize();
 
+         
         public ParcelInfo GetParcelSize()
         {
             ParcelInfo parcelInfo = null;
