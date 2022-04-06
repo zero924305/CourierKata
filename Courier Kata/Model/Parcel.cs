@@ -5,19 +5,9 @@ using System.Threading.Tasks;
 
 namespace Courier_Kata.Model
 {
-    //Parcel Size Details
-    public enum ParcelSize
-    { 
-        Small = 10,
-        Medium = 50, 
-        Large = 100,
-        XL
-    }
-
-
     public class Parcel
     {
-        public Parcel(int len, int wid, int hei,int wei)
+        public Parcel(int len, int wid, int hei,int wei, bool IsHeavy)
         {
             if (len <= 0 || wid <= 0 || hei <= 0 || wei <= 0)
                 throw new InvalidOperationException("The package dimensions or weight are invalid");
@@ -26,6 +16,7 @@ namespace Courier_Kata.Model
             this.Width_mm = wid;
             this.Height_mm = hei;
             this.Weight_g = wei;
+            this.IsHeavy = IsHeavy;
         }
 
         //set the length in millimetre 
@@ -40,5 +31,42 @@ namespace Courier_Kata.Model
         //set the Weight in gram
         public int Weight_g { get; set; }
 
+        public bool IsHeavy { get; set; }
+
+        public ParcelInfo ParcelInfo => GetParcelSize();
+
+        public ParcelInfo GetParcelSize()
+        {
+            ParcelInfo parcelInfo = null;
+
+            //Create a Parcel detail list 
+            List<ParcelInfo> plist = new();
+            //ParcelSizeName, ParcelDimensions, ParcelSizeFee, ParcelWeightLimit, ParcelOverWeightPenaltyFee
+            plist.Add(new ParcelInfo("Small", 100, 3, 1000, 2));
+            plist.Add(new ParcelInfo("Medium", 500, 8, 3000, 2));
+            plist.Add(new ParcelInfo("Large", 1000, 15, 6000, 2));
+            plist.Add(new ParcelInfo("XL", 0, 25, 10000, 2));
+            plist.Add(new ParcelInfo("Heavy", 0, 50, 50000, 1));
+
+            if (IsHeavy)
+                parcelInfo = plist.First(x => x.ParcelSizeName == "Heavy");
+
+            else
+            {
+                foreach (var parcel in plist.Where(x => x.ParcelSizedimensions_mm > 0))
+                {
+                    //Check the input of Lenght, Width, Height and define which parcel size of this parcel is
+                    if (this.Length_mm < parcel.ParcelSizedimensions_mm && this.Width_mm < parcel.ParcelSizedimensions_mm && this.Height_mm < parcel.ParcelSizedimensions_mm)
+                    {
+                        parcelInfo = parcel;
+                        break;
+                    }
+                }
+                    //if the condiction did not match then select the parcel size is "XL" 
+                    if (parcelInfo is null)
+                        parcelInfo = plist.First(x => x.ParcelSizeName == "XL");
+            }
+                return parcelInfo;
+        }
     }
 }
