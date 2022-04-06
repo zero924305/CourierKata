@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 
 namespace Courier_Kata.Model
@@ -32,6 +33,8 @@ namespace Courier_Kata.Model
         public int Weight_g { get; set; }
 
         public bool IsHeavy { get; set; }
+
+        public int ParcelBaseFee => ParcelInfo.ParcelSizeFee;
 
         public ParcelInfo ParcelInfo => GetParcelSize();
 

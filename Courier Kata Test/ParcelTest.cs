@@ -31,5 +31,16 @@ namespace Courier_Kata_Test
             Assert.Equal(ExpectName, p.ParcelInfo.ParcelSizeName);
         }
 
+        [Theory]
+        [InlineData(50, 50, 50, 500, false, 3)]//Small
+        [InlineData(50, 50, 490, 500, false, 8)]//Medium
+        [InlineData(50, 50, 990, 500, false, 15)]//Large
+        [InlineData(50, 50, 5000, 500, false, 25)]//XL
+        [InlineData(50, 50, 50, 500, true, 50)]//Heavy
+        public void CheckParcelBaseFeeCorrect(int len, int wid, int hei, int wei, bool IsHeavy, int ExpectedFee)
+        {
+            Parcel p = new(len, wid, hei, wei, IsHeavy);
+            Assert.Equal(ExpectedFee, p.ParcelBaseFee);
+        }
     }
 }

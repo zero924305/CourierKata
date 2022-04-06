@@ -10,16 +10,16 @@ namespace Courier_Kata.Model
     {
         public string ParcelSizeName { get; set; }
         public int ParcelSizedimensions_mm { get; set; }
-        public int ParcelWeightLimit_g { get; set; }
         public int ParcelSizeFee { get; set; }
+        public int ParcelWeightLimit_g { get; set; }
         public int ParcelSizeOverWeightPenaltyFeePerKg { get; set; }
 
-        public ParcelInfo(string ParcelSizeName, int ParcelSizedimensions_mm, int ParcelWeightLimit_g, int ParcelSizeFee,int ParcelSizeOverWeightPenaltyFeePerKg)
+        public ParcelInfo(string ParcelSizeName, int ParcelSizedimensions_mm, int ParcelSizeFee, int ParcelWeightLimit_g, int ParcelSizeOverWeightPenaltyFeePerKg)
         {
             this.ParcelSizeName = ParcelSizeName;
             this.ParcelSizedimensions_mm = ParcelSizedimensions_mm;
-            this.ParcelWeightLimit_g = ParcelWeightLimit_g;
             this.ParcelSizeFee = ParcelSizeFee;
+            this.ParcelWeightLimit_g = ParcelWeightLimit_g;
             this.ParcelSizeOverWeightPenaltyFeePerKg = ParcelSizeOverWeightPenaltyFeePerKg;
         }
     }
