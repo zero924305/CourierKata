@@ -17,14 +17,32 @@ namespace Courier_Kata.Model
 
     public class Order
     {
-        public List<Parcel> ParcelDetails { get; set; }
+        public List<Parcel> OrderParcelDetails { get; set; }
 
         //using Linq to get the total number of parcel in a order
-        public int TotalParcelInOrder => ParcelDetails.Count;
+        public int TotalParcelInOrder => OrderParcelDetails.Count;
 
         //Check does this order need for fast shipping 
         public bool IsSpeedyOrder { get; set; }
 
-        
+        //get discount type name
+        public string OrderDiscountType => GetParcelDiscountType(OrderParcelDetails, TotalParcelInOrder);
+
+        //Create a method to get the Parcel Discount Type
+        private static string GetParcelDiscountType(List<Parcel> parcels, int totalParcel)
+        {
+            int TotalSmallParcel = parcels.Count(x => x.ParcelInfo.ParcelSizeName.Equals(nameof(ParcelDiscountType.Small)));
+            int TotalMediumParcel = parcels.Count(x => x.ParcelInfo.ParcelSizeName.Equals(nameof(ParcelDiscountType.Medium)));
+
+            if (totalParcel.Equals(TotalSmallParcel))
+                return nameof(ParcelDiscountType.Small);
+            if (totalParcel.Equals(TotalMediumParcel))
+                return nameof(ParcelDiscountType.Medium);
+            if (totalParcel >= (int)ParcelDiscountType.Mixed)
+                return nameof(ParcelDiscountType.Medium);
+
+            return nameof(ParcelDiscountType.None);
+
+        }
     }
 }
