@@ -17,6 +17,12 @@ namespace Courier_Kata.Model
 
     public class Order: IOrder
     {
+        public Order (List<Parcel> OrderParcelDetails, bool IsSpeedyOrder)
+        {
+            this.OrderParcelDetails = OrderParcelDetails;
+            this.IsSpeedyOrder = IsSpeedyOrder;
+        }
+
         public List<Parcel> OrderParcelDetails { get; set; }
 
         //Check does this order need for fast shipping 
